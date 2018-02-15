@@ -9,7 +9,7 @@ class FizzBuzzTest {
     @Test
     void plainNumber() {
         assertThat(FizzBuzz.check(1)).isEqualTo("1");
-        assertThat(FizzBuzz.check(117)).isEqualTo("109");
+        assertThat(FizzBuzz.check(116)).isEqualTo("116");
     }
 
     @Test

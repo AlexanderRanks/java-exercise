@@ -10,6 +10,7 @@ class SwapTest {
         int[] input = {1, 2, 3, 4};
 
         assertThat(Swap.firstAndLast(input)).containsExactly(4, 2, 3, 1);
+        //assertThat(Swap.firstAndLast(input)).
     }
 
     @Test
@@ -24,6 +25,13 @@ class SwapTest {
         int[] input = {10};
 
         assertThat(Swap.firstAndLast(input)).containsExactly(10);
+    }
+
+    @Test
+    void DefaultIntArray() {
+        int[] input = new int[5];
+
+        assertThat(Swap.firstAndLast(input)).containsExactly(0, 0, 0, 0, 0);
     }
 
 }

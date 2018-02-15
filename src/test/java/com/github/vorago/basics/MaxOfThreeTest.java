@@ -20,11 +20,14 @@ class MaxOfThreeTest {
     void equalPair() {
         assertThat(MaxOfThree.max(10, 10, 1)).isEqualTo(10);
         assertThat(MaxOfThree.max(10, 1, 1)).isEqualTo(10);
+        assertThat(MaxOfThree.max(10, 1, 10)).isEqualTo(10);
     }
 
     @Test
     void allEqual() {
         assertThat(MaxOfThree.max(0, 0, 0)).isEqualTo(0);
+        assertThat(MaxOfThree.max(33, 33, 33)).isEqualTo(33);
     }
+
 
 }
