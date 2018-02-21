@@ -39,13 +39,13 @@ public class Maps {
         int i = 0;
         boolean added = false;
         do {
-            if (i==orderedList.size()){
+            if (i == orderedList.size()) {
                 orderedList.add(key);
                 added = true;
-            } else{
+            } else {
                 int newOrder = (Integer) order.get(key);
                 int currentOrder = (Integer) order.get(orderedList.get(i));
-                if (newOrder>=currentOrder) {
+                if (newOrder >= currentOrder) {
                     orderedList.add(i, key);
                     added = true;
                 }
