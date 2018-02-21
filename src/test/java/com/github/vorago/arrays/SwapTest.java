@@ -28,7 +28,7 @@ class SwapTest {
     }
 
     @Test
-    void DefaultIntArray() {
+    void defaultIntArray() {
         int[] input = new int[5];
 
         assertThat(Swap.firstAndLast(input)).containsExactly(0, 0, 0, 0, 0);

@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AverageTest {
 
     @Test
-    void Math() {
+    void math() {
         int[] input = {1, 2, 3, 4};
         assertThat(Average.calculate(input)).isEqualTo(2);
 
@@ -32,7 +32,7 @@ public class AverageTest {
     }
 
     @Test
-    void DefaultIntArray() {
+    void defaultIntArray() {
         int[] input = new int[5];
         assertThat(Average.calculate(input)).isEqualTo(0);
     }

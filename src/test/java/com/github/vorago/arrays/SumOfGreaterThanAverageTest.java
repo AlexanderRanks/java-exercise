@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SumOfGreaterThanAverageTest {
 
     @Test
-    void Math() {
+    void math() {
         int[] input = {1, 2, 3, 4};
         //assertThat(Average.calculate(input)).isEqualTo(2);
         assertThat(SumOfGreaterThanAverage.calculate(input)).isEqualTo(7);
@@ -45,7 +45,7 @@ public class SumOfGreaterThanAverageTest {
 
 
     @Test
-    void DefaultIntArray() {
+    void defaultIntArray() {
         int[] input = new int[5];
         //assertThat(Average.calculate(input)).isEqualTo(0);
         assertThat(SumOfGreaterThanAverage.calculate(input)).isEqualTo(0);
