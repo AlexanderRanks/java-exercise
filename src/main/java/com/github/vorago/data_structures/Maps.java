@@ -34,8 +34,7 @@ public class Maps {
         System.out.println(orderedList);
     }
 
-    private static void addToArrayList(List orderedList, String key, Map order) {
-        order.get(key);
+    private static void addToArrayList(List<String> orderedList, String key, Map<String, Integer> order) {
         int i = 0;
         boolean added = false;
         do {
@@ -43,8 +42,8 @@ public class Maps {
                 orderedList.add(key);
                 added = true;
             } else {
-                int newOrder = (Integer) order.get(key);
-                int currentOrder = (Integer) order.get(orderedList.get(i));
+                int newOrder = order.get(key);
+                int currentOrder = order.get(orderedList.get(i));
                 if (newOrder >= currentOrder) {
                     orderedList.add(i, key);
                     added = true;
