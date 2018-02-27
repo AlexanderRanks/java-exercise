@@ -11,6 +11,7 @@ public class Maps {
     После окончания ввода программа должна отсортировать строки
     (более чаще встречающиеся строки должны быть в начале, а встретившиеся всего один раз в конце) и вывести результат на консоль.
     */
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Map<String, Integer> myMap = new HashMap<>();
