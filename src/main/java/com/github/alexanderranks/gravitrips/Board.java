@@ -48,14 +48,10 @@ class Board {
         return gameWinnerFlag;
     }
 
+
     public boolean trip(Cell playerFlag, int column) {
 
-        if (this.isGameOver()) {
-            System.out.println("Game is already over!");
-        }
-
-        if (!((column >= 1) && (column <= BOARD_WIDTH))) {
-            System.out.println("Bad trip.");
+        if (!isValidTrip(column)) {
             return false;
         }
 
@@ -64,17 +60,9 @@ class Board {
         while ((row < BOARD_HEIGHT) && (board[row][column] == Cell.EMPTY)) {
             row++;
         }
-
-        if (row == 0) {
-            System.out.println("Bad trip.");
-            return false;
-        } else {
-            row--;
-            board[row][column] = playerFlag;
-        }
-
+        row--;
+        board[row][column] = playerFlag;
         this.evaluate();
-
         return true;
 
     }
@@ -88,10 +76,10 @@ class Board {
 
         //horizontal loop
         row = 0;
-        while ((state.getAccumLen() < WIN_LENGTH) && (row < BOARD_HEIGHT)) {
+        while (!isWinningCondition(state) && (row < BOARD_HEIGHT)) {
             col = 0;
             state = new StateAccum();
-            while ((state.getAccumLen() < WIN_LENGTH) && (col < BOARD_WIDTH)) {
+            while (!isWinningCondition(state) && (col < BOARD_WIDTH)) {
                 state.accum(board[row][col]);
                 col++;
             }
@@ -100,10 +88,10 @@ class Board {
 
         //vertical loop
         col = 0;
-        while ((state.getAccumLen() < WIN_LENGTH) && (col < BOARD_WIDTH)) {
+        while (!isWinningCondition(state) && (col < BOARD_WIDTH)) {
             row = 0;
             state = new StateAccum();
-            while ((state.getAccumLen() < WIN_LENGTH) && (row < BOARD_HEIGHT)) {
+            while (!isWinningCondition(state) && (row < BOARD_HEIGHT)) {
                 state.accum(board[row][col]);
                 row++;
             }
@@ -113,22 +101,22 @@ class Board {
         //traverse diagonal
         int drow = 0;
         int dcol = 0;
-        while ((state.getAccumLen() < WIN_LENGTH) && (dcol < BOARD_WIDTH)) {
+        while (!isWinningCondition(state) && (dcol < BOARD_WIDTH)) {
 
             // slash diagonal [/]
-            if (state.getAccumLen() < WIN_LENGTH) {
+            if (!isWinningCondition(state)) {
                 state = new StateAccum();
             }
             row = drow;
             col = dcol;
-            while ((state.getAccumLen() < WIN_LENGTH) && (row >= 0) && (col < BOARD_WIDTH)) {
+            while (!isWinningCondition(state) && (row >= 0) && (col < BOARD_WIDTH)) {
                 state.accum(board[row][col]);
                 row--;
                 col++;
             }
 
             // backslash diagonal [\]
-            if (state.getAccumLen() < WIN_LENGTH) {
+            if (!isWinningCondition(state)) {
                 state = new StateAccum();
             }
             row = drow;
@@ -137,7 +125,7 @@ class Board {
             } else {
                 col = dcol;
             }
-            while ((state.getAccumLen() < WIN_LENGTH) && (row >= 0) && (col >= 0)) {
+            while (!isWinningCondition(state) && (row >= 0) && (col >= 0)) {
                 state.accum(board[row][col]);
                 row--;
                 col--;
@@ -153,8 +141,7 @@ class Board {
         }
 
 
-        //check winner condition
-        if (state.getAccumLen() >= WIN_LENGTH) {
+        if (isWinningCondition(state)) {
             //we have a winner
             gameOver = true;
             gameWinnerFlag = state.getAccumState();
@@ -175,5 +162,27 @@ class Board {
 
     }
 
+    private boolean isValidTrip(int column) {
 
+        if (this.isGameOver()) {
+            System.out.println("Game is already over!");
+            return false;
+        }
+
+        if (!((column >= 1) && (column <= BOARD_WIDTH))) {
+            System.out.println("Bad trip.");
+            return false;
+        }
+
+        if (board[0][--column] != Cell.EMPTY) {
+            System.out.println("Bad trip.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isWinningCondition(StateAccum state) {
+        return (state.getAccumLen() >= WIN_LENGTH);
+    }
 }

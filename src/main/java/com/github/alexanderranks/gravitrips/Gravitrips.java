@@ -6,13 +6,8 @@ import java.util.Scanner;
 
 public class Gravitrips {
 
-    private Map<Cell, Player> players;
-    private Board board;
-
-    public Gravitrips() {
-        board = new Board();
-        players = new LinkedHashMap<Cell, Player>();
-    }
+    private Map<Cell, Player> players = new LinkedHashMap<Cell, Player>();
+    private Board board = new Board();
 
     public void playGame() {
         Player player;
@@ -50,16 +45,11 @@ public class Gravitrips {
     }
 
     private Player initializePlayer(Cell flag) {
-        Player player;
-        Human human;
-        Computer computer;
-        String name;
-        boolean isHuman;
         Scanner scanner = new Scanner(System.in);
 
         System.out.println();
         System.out.print("Player '" + flag + "' name: ");
-        name = scanner.nextLine();
+        String name = scanner.nextLine();
         System.out.println(name + " is human?");
 
         String userInput;
@@ -68,12 +58,8 @@ public class Gravitrips {
             userInput = scanner.nextLine().toUpperCase();
         } while ((!userInput.equals("Y")) && (!userInput.equals("N")));
 
-        if (userInput.equals("Y")) {
-            isHuman = true;
-        } else {
-            isHuman = false;
-        }
-
+        Player player;
+        boolean isHuman = userInput.equals("Y");
         if (isHuman) {
             player = new Human(name, flag);
         } else {
