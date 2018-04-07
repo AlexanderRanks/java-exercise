@@ -1,6 +1,6 @@
 package com.github.alexanderranks.gravitrips;
 
-class Player {
+abstract class Player {
     protected String name;
     private Cell flag;
 
@@ -25,9 +25,7 @@ class Player {
         this.setFlag(flag);
     }
 
-    public int makeTrip(Board board) {
-        return 0;
-    }
+    public abstract int makeTrip(Board board);
 
     @Override
     public String toString() {
